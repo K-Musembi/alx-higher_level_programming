@@ -8,6 +8,7 @@ if __name__ == '__main__':
         print(f'{1} argument:')
         print(f'{1}: ' + sys.argv[1])
     else:
-        print(f'{len(sys.argv)} arguments:')
+        args = len(sys.argv) - 1
+        print(f'{args} arguments:')
         for i in range(1, len(sys.argv)):
             print(f'{i}: ' + sys.argv[i])
