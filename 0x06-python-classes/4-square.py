@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+'''A module that defines a class with its attributes and methods.'''
+
+
 class Square:
     '''A class that defines and initializes a sqaure.'''
 
