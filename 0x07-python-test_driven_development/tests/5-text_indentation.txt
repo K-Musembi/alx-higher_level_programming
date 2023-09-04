@@ -1,0 +1,52 @@
+'''
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("ALX is a good school.  It teaches Software Engineering?")
+ALX is a good school.
+<BLANKLINE>
+It teaches Software Engineering?
+<BLANKLINE>
+
+>>> text_indentation("ALX is a good school  It teaches Software Engineering")
+ALX is a good school  It teaches Software Engineering
+
+>>> text_indentation("ALX is a good school  It teaches Software Engineering:")
+ALX is a good school  It teaches Software Engineering:
+<BLANKLINE>
+
+>>> text_indentation("ALX")
+ALX
+
+>>> text_indentation("ALX.")
+ALX.
+<BLANKLINE>
+
+>>> text_indentation("A.")
+A.
+<BLANKLINE>
+
+>>> text_indentation("      ALX is a good school.It teaches Software Engineering     ")
+ALX is a good school.
+<BLANKLINE>
+It teaches Software Engineering
+
+>>> text_indentation("      ALX is a good school.       It teaches Software Engineering     ")
+ALX is a good school.
+<BLANKLINE>
+It teaches Software Engineering
+
+>>> text_indentation("A.")
+A.
+<BLANKLINE>
+
+>>> text_indentation(10)
+Traceback (most recent call last):
+  ...
+TypeError: text must be a string
+
+>>> text_indentation("")
+
+>>> text_indentation(" ")
+
+'''
