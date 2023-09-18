@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''Defines a test class'''
 
-from models.base import Base
 import unittest
+from models.base import Base
 
 
 class TestBase(unittest.TestCase):
