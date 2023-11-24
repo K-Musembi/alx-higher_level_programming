@@ -6,23 +6,25 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
-username = sys.argv[1]
-password = sys.argv[2]
-db_name = sys.argv[3]
 
-engine = create_engine(
-        f"mysql://{username}:{password}@localhost:3306/{db_name}")
-Base.metadata.bind = engine
+if len(sys.argv) == 4:
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+    engine = create_engine(
+            f"mysql://{username}:{password}@localhost:3306/{db_name}")
+    Base.metadata.bind = engine
 
-first = session.query(State).order_by(State.id).first()
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
 
-if first is None:
-    print("Nothing")
-else:
-    print(f"{first.id}: {first.name}")
+    first = session.query(State).order_by(State.id).first()
+
+    if first is None:
+        print("Nothing")
+    else:
+        print(f"{first.id}: {first.name}")
 
 
 def main():

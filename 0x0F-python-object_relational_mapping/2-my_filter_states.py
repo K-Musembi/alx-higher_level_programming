@@ -4,27 +4,29 @@
 import MySQLdb
 import sys
 
-username = sys.argv[1]
-password = sys.argv[2]
-db_name = sys.argv[3]
 
-conn = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name)
+if len(sys.argv) == 4:
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
 
-cur = conn.cursor()
+    conn = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=db_name)
 
-cur.execute("SELECT * FROM state WHERE name LIKE {} ORDER BY id".format(sys.argv[4]))
+    cur = conn.cursor()
 
-rows = cur.fetchall()
-for row in rows:
-    print(row)
+    cur.execute("SELECT * FROM state WHERE name LIKE {} ORDER BY id".format(sys.argv[4]))
 
-cur.close()
-conn.close()
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+
+    cur.close()
+    conn.close()
 
 
 def main():

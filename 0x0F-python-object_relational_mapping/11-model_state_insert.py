@@ -6,22 +6,24 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 from sys import argv
 
-username = argv[1]
-password = argv[2]
-db_name = argv[3]
 
-engine = create_engine(
-        f"mysql://{username}:{password}@localhost:3306/{db_name}")
+if len(argv) == 4:
+    username = argv[1]
+    password = argv[2]
+    db_name = argv[3]
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+    engine = create_engine(
+            f"mysql://{username}:{password}@localhost:3306/{db_name}")
 
-new_state = State(name="Louisiana")
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
 
-session.add(new_state)
-session.commit()
+    new_state = State(name="Louisiana")
 
-print(new_state.id)
+    session.add(new_state)
+    session.commit()
+
+    print(new_state.id)
 
 
 def main():

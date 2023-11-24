@@ -6,17 +6,20 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 from sys import argv
 
-engine = create_engine(f"mysql://{argv[1]}:{argv[2]}@localhost:3306/{argv[3]}")
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+if len(argv) == 4:
+    engine = create_engine(
+            f"mysql://{argv[1]}:{argv[2]}@localhost:3306/{argv[3]}")
 
-a_named = session.query(State).filter(State.name.like('%a%')).all()
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
 
-for state in a_named:
-    session.delete(state)
+    a_named = session.query(State).filter(State.name.like('%a%')).all()
 
-session.commit()
+    for state in a_named:
+        session.delete(state)
+
+    session.commit()
 
 
 def main():

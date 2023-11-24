@@ -7,21 +7,23 @@ from model_state import Base, State
 from model_city import City
 from sys import argv
 
-engine = create_engine(
-        f"mysql://{argv[1]}:{argv[2]}@localhost:3306/{argv[3]}")
 
-Base.metadata.bind = engine
+if len(argv) == 4:
+    engine = create_engine(
+            f"mysql://{argv[1]}:{argv[2]}@localhost:3306/{argv[3]}")
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+    Base.metadata.bind = engine
 
-cities = session.query(City, State)\
-        .join(State, State.id == City.state_id)\
-        .order_by(City.id)\
-        .all()
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
 
-for city, state in cities:
-    print(f"{state.name}: {city.id} {city.name}")
+    cities = session.query(City, State)\
+            .join(State, State.id == City.state_id)\
+            .order_by(City.id)\
+            .all()
+
+    for city, state in cities:
+        print(f"{state.name}: {city.id} {city.name}")
 
 
 def main():
