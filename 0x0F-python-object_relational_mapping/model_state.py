@@ -5,7 +5,6 @@ from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import sys
-from model_city import City
 
 Base = declarative_base()
 
@@ -25,6 +24,8 @@ class State(Base):
     
         engine = create_engine(
                 f"mysql://{}:{password}@localhost:3306/{db_name}")
+
+        from model_city import City
 
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
