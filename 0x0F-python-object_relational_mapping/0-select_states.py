@@ -1,31 +1,34 @@
 #!/usr/bin/python3
-'''Script to list all states'''
+""" Script to list all states
+"""
 
 import MySQLdb
 import sys
 
-mysql_username = sys.argv[1]
-mysql_password = sys.argv[2]
-database_name = sys.argv[3]
 
-db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=mysql_username,
-        passwd=mysql_password,
-        db=database_name)
+if len(sys.argv) == 4:
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
 
-cur = db.cursor()
+    db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=mysql_username,
+            passwd=mysql_password,
+            db=database_name)
 
-cur.execute("SELECT * FROM states ORDER BY id ASC")
+    cur = db.cursor()
 
-results = cur.fetchall()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
 
-for row in results:
-    print(row)
+    results = cur.fetchall()
 
-cur.close()
-db.close()
+    for row in results:
+        print(row)
+
+    cur.close()
+    db.close()
 
 
 def main():
