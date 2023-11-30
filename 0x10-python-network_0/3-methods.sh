@@ -1,3 +1,3 @@
 #!/bin/bash
 # Display accepted HTTP methods
-curl -s -X OPTIONS -I "$1" | grep Allow
+curl -s -X OPTIONS -i "$1"
